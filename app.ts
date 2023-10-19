@@ -1,13 +1,14 @@
 import 'reflect-metadata'
 import { ApolloServer } from 'apollo-server'
 import { buildSchema } from 'type-graphql'
-import { RootQuery } from './schema/schema'
 import path from 'node:path'
+import { AuthorResolver, BookResolver } from './schema/schema'
 
 async function bootstrap() {
     const schema = await buildSchema({
         resolvers: [
-            RootQuery,
+            BookResolver,
+            AuthorResolver
         ],
         emitSchemaFile: path.resolve(__dirname, 'schema.gql'),
         validate: {

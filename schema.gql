@@ -3,12 +3,21 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Author {
+  age: Float!
+  id: String!
+  name: String!
+}
+
 type Book {
+  author: Author!
+  authorId: String!
   genre: String!
   id: String!
   name: String!
 }
 
 type Query {
+  author(id: String!): Author!
   book(id: String!): Book!
 }
