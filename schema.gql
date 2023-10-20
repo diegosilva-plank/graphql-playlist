@@ -5,6 +5,7 @@
 
 type Author {
   age: Float!
+  books: [Book!]!
   id: String!
   name: String!
 }
@@ -17,7 +18,14 @@ type Book {
   name: String!
 }
 
+type Mutation {
+  addAuthor(age: Float!, name: String!): Author!
+  addBook(authorId: String!, genre: String!, name: String!): Book!
+}
+
 type Query {
   author(id: String!): Author!
+  authors: [Author!]!
   book(id: String!): Book!
+  books: [Book!]!
 }
