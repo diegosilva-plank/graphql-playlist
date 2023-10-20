@@ -1,12 +1,15 @@
 import { useQuery } from "@apollo/client"
 import { Book } from "../gql/graphql"
 import { getBooksQuery } from "../queries/queries"
+import { BookDetails } from "./BookDetails"
+import { useState } from "react"
 
 export const BookList = () => {
     const getBooks = useQuery(getBooksQuery)
+    const [selectedBook, setSelectedBook] = useState<string>('')
 
     const DisplayBooks = ({ books }: { books: Book[] }) => {
-        return books.map(book => <li key={book.id}>{book.name}</li>)
+        return books.map(book => <li key={book.id} onClick={ () => { setSelectedBook(book.id) } }>{book.name}</li>)
     }
 
     const Books = () => {
@@ -20,6 +23,7 @@ export const BookList = () => {
             <ul id="book-list">
                 <Books />
             </ul>
+            <BookDetails id={selectedBook}/>
         </div>
     )
 }

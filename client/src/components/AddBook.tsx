@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { Author } from "../gql/graphql";
-import { addBookMutation, getAuthorsQuery } from "../queries/queries";
+import { addBookMutation, getAuthorsQuery, getBooksQuery } from "../queries/queries";
 import { useState } from "react";
 
 export const AddBook = () => {
@@ -27,9 +27,9 @@ export const AddBook = () => {
                 name: bookName,
                 genre: genre,
                 authorId: selectedAuthor
-            }
+            },
+            refetchQueries: [getBooksQuery]
         })
-        console.log(bookName, genre, selectedAuthor)
     }
 
     return (
